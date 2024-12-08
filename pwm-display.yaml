@@ -1,0 +1,39 @@
+esphome:
+  name: wt32-eth01-pwm-display
+  friendly_name: pwm-display
+  platformio_options:
+    upload_speed: 115200
+    board_build.flash_mode: dio
+    board_build.flash_size: keep
+
+esp32:
+  board: 'wt32-eth01'
+  framework:
+    type: arduino
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO0_IN
+  phy_addr: 1
+  power_pin: GPIO16
+
+# Web server
+web_server:
+  port: 80
+
+# Enable logging for debug info
+logger:
+  level: DEBUG
+
+# API for Home Assistant integration
+api:
+
+# Over-the-air updates
+ota:
+  platform: esphome
+
+# Optional: Move LED indicator to GPIO2 to avoid Ethernet conflict
+status_led:
+  pin: GPIO2
